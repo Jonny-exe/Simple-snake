@@ -1,5 +1,38 @@
-
-.button {
+/* .button {
     width: 150px;
     height: 30px;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    background-color: #2E4CA4;
+    align-items: center;
+    justify-content: center;
+    font-family: arial;
+    color: white;
+}
+
+button {
+    /* width: 30%; */
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 2%;
+    
+}
+
+input {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+
+#snake.stoped {
+    border: 3px solid white;
+    border-radius: 7px;
 }

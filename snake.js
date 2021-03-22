@@ -1,6 +1,7 @@
 const cvs = document.getElementById('snake');
 const ctx = cvs.getContext('2d');
 const square = 20;
+const snakeContainer = document.getElementById("snake")
 
 var direcX, direcY;
 var interval;
@@ -59,7 +60,6 @@ function randomFruit() {
 }
 
 function paintSnake() {
-    console.log("painting");
     direcX = directionX;
     direcY = directionY;
     snake.unshift({
@@ -97,7 +97,9 @@ function paintSnake() {
 }
 
 function start() {
+    document.getElementById("finished").style.display = "none"
     speed = document.getElementById("speed").value;
+    snakeContainer.classList.remove("stoped")
     directionX = -1;
     directionY = 0;
     console.log("start");
@@ -108,11 +110,12 @@ function start() {
 
 function initWindow() {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#d3d3d3";
+    ctx.fillStyle = "#2E4CA4";
     ctx.fillRect(0, 0, width, height);
     ctx.font = "bold 20px Ubuntu";
-    ctx.fillStyle = "blue";
-    ctx.fillText("click to start the game", 18, 20);
+    ctx.fillStyle = "white";
+    ctx.fillText("click to start the game", 40, height/2);
+    snakeContainer.classList.add("stoped")
 }
 
 function doesInclude(value) {
@@ -129,14 +132,16 @@ function stopSnake() {
     clearInterval(interval);
     ctx.clearRect(0, 0, width, height);
     ctx.font = "bold 20px Ubuntu";
-    ctx.fillStyle = "blue";
-    ctx.fillText("Game Over, your score was " + (length - 4), 18, 20);
+    ctx.fillStyle = "white";
+    ctx.fillText("Game Over, your score was " + (length - 4), 20, height/2);
+
+    document.getElementById("finished").style.display = "inherit"
+    snakeContainer.classList.add("stoped")
 }
 
 function touchedItself() {
     for (let i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-            console.log("touched");
             return true;
         }
     }
@@ -173,7 +178,7 @@ function changeDirection(d) {
 }
 
 function eventListerners() {
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener("keydown", function (event) {
         const keyName = event.key;
         changeDirection(keyName);
     });
